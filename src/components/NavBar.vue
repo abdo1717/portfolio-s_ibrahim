@@ -34,8 +34,6 @@ watch(
   }
 )
 
-
-
 function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Escape') mobileOpen.value = false
 }
@@ -79,7 +77,6 @@ function onKeydown(e: KeyboardEvent) {
     </nav>
 
     <a
-      @click="openCVInNewTab"
       :href="`${window.location.origin}${profile.cvUrl}`"
       target="_blank"
       rel="noopener noreferrer"
