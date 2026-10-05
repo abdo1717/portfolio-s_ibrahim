@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────── Design tokens ───────────── */
+:root {
+  --color-primaryBlue-1000: #001a45;
+  --color-primaryBlue-50: #e6f0ff;
+  --color-primaryBlue-500: #003d9b;
+  --color-primaryBlue-600: #00368a;
+  --color-text: #191c1e;
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  color: var(--color-text);
+  background: #fff;
+  line-height: 1.6;
+  font-family:
+    'Inter Variable',
+    Inter,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Keyboard focus is always visible (was missing before). */
+:focus-visible {
+  outline: 2px solid var(--color-primaryBlue-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Sections stop below the sticky navbar when reached through an anchor. */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* ───────────── Scroll reveal (used by the v-reveal directive) ───────────── */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition:
+    opacity 0.8s var(--ease-out-expo),
+    transform 0.8s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+.reveal-left {
+  transform: translate3d(-24px, 0, 0);
+}
+.reveal-scale {
+  transform: scale(0.96);
+}
+
+/* Bar that draws itself from the left (About heading underline, section titles). */
+.reveal-bar {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.9s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal-bar.is-visible {
+  transform: scaleX(1);
+}
+
+/* ───────────── Hover motion (only where it answers a user action) ───────────── */
+.motion-lift {
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease,
+    border-color 250ms ease;
+}
+.motion-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(0, 61, 155, 0.14);
+}
+
+/* ───────────── Page transition between routes ───────────── */
+.page-enter-active {
+  transition:
+    opacity 0.35s var(--ease-out-expo),
+    transform 0.35s var(--ease-out-expo);
+}
+.page-leave-active {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+/* ───────────── Reduced motion: everything is shown immediately ───────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .reveal-bar {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .page-enter-active,
+  .page-leave-active {
+    transition: none !important;
+  }
+  .motion-lift:hover {
+    transform: none;
+  }
+}
