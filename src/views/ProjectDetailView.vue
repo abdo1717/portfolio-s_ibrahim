@@ -91,7 +91,7 @@ const h2 = 'font-heading text-2xl font-bold tracking-[-0.01em] text-navy sm:text
     
     <!-- أيقونة التكبير -->
     <div class="absolute top-4 right-4 flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1.5 text-xs font-mono text-steel shadow-sm">
-      <AppIcon name="zoom-in" :size="14" />
+      <AppIcon name="external" :size="14" />
       <span class="hidden sm:inline">Click to enlarge</span>
     </div>
   </div>
