@@ -23,7 +23,7 @@ import { profile } from '@/data/portfolio'
           class="hero-in flex max-w-full items-center gap-2 rounded-xl border border-[#C3C6D6]/50 bg-[#EDEEF0] px-3 py-1.5 sm:px-3.5"
           style="--d: 0ms"
         >
-          <span class="block h-3 w-3 rounded-full bg-[#00687B]/75" aria-hidden="true"></span>
+          <span class="block h-3 w-3 rounded-full bg-[#90EE90]/75" aria-hidden="true"></span>
           <span
             class="font-mono text-[10px] font-medium uppercase leading-4 tracking-[0.45px] text-primaryBlue-1000 sm:text-sm sm:tracking-[0.6px]"
           >
