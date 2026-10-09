@@ -99,7 +99,7 @@ export const projects: Project[] = [
       'Designed and implemented a large-scale enterprise network infrastructure, focusing on BGP high availability and routing to minimize downtime.',
     tags: ['Cisco', 'BGP', 'OSPF'],
     image:
-      '/public/مخطط بنية شبكة مؤسسية ثلاثي الأبعاد.png',
+      '/public/Enterprise-Network.png',
     imageAlt: 'Enterprise Network Redesign topology diagram',
     role: 'Network design & implementation',
     overview:
@@ -190,7 +190,7 @@ route-map ISP-A-PREF permit 10
       'Developed and deployed secure VPN solutions based on IPSec to connect multiple branches with high security and Zero Trust Architecture implementation.',
     tags: ['Juniper', 'IPSec', 'Security'],
     image:
-      '/public/شبكة آمنة في مركز البيانات.png',
+      '/public/Secure-VPN-Implementation.png',
     imageAlt: 'Juniper network hardware used for the VPN implementation',
     role: 'Security design & deployment',
     overview:
