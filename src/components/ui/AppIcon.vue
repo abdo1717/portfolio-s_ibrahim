@@ -16,6 +16,7 @@ export type IconName =
   | 'download'
   | 'menu'
   | 'close'
+  |'zoom-in'
 
 withDefaults(defineProps<{ name: IconName; size?: number; label?: string }>(), { size: 20 })
 </script>
