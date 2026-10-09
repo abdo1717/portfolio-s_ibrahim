@@ -190,7 +190,7 @@ route-map ISP-A-PREF permit 10
       'Developed and deployed secure VPN solutions based on IPSec to connect multiple branches with high security and Zero Trust Architecture implementation.',
     tags: ['Juniper', 'IPSec', 'Security'],
     image:
-      '/public/Secure-VPN-Implementation.png',
+      '/Secure-VPN-Implementation.png',
     imageAlt: 'Juniper network hardware used for the VPN implementation',
     role: 'Security design & deployment',
     overview:
@@ -274,7 +274,7 @@ set security ipsec vpn BRANCH-A-VPN ike ipsec-policy IPSEC-POL`,
       'Designed a hybrid environment connecting on-premise data centers to AWS cloud using Transit Gateway with configuration automation via Python.',
     tags: ['AWS', 'Python', 'Terraform'],
     image:
-      '/public/Hybrid Cloud Architecture.jpg',
+      '/Hybrid-Cloud-Architecture.jpg',
     imageAlt: 'Cloud hybrid infrastructure visualization',
     role: 'Cloud network design & automation',
     overview:
