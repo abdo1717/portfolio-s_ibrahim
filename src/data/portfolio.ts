@@ -99,7 +99,7 @@ export const projects: Project[] = [
       'Designed and implemented a large-scale enterprise network infrastructure, focusing on BGP high availability and routing to minimize downtime.',
     tags: ['Cisco', 'BGP', 'OSPF'],
     image:
-      '/public/Enterprise-Network.png',
+      '/Enterprise-Network.png',
     imageAlt: 'Enterprise Network Redesign topology diagram',
     role: 'Network design & implementation',
     overview:
