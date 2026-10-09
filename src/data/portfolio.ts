@@ -16,7 +16,7 @@ export const profile = {
   cvUrl: '/Ibrahim-Zaki-CV.pdf', // TODO: add public/Ibrahim-Zaki-CV.pdf
   /** TODO: the temporary builder.io URL will expire → save the photo in src/assets and import it. */
   photo:
-    'https://api.builder.io/api/v1/image/assets/TEMP/8af10605169a6ce669851f42a839b45d4a84d516?width=1084',
+    '/photo.png', // TODO: add public/photo.png or import from src/assets
 } as const
 
 /** TODO: replace with the real profile links. */
@@ -99,7 +99,7 @@ export const projects: Project[] = [
       'Designed and implemented a large-scale enterprise network infrastructure, focusing on BGP high availability and routing to minimize downtime.',
     tags: ['Cisco', 'BGP', 'OSPF'],
     image:
-      'https://api.builder.io/api/v1/image/assets/TEMP/726e6593abbbd949940b96f5da203d85cb55d0ba?width=785',
+      '/public/مخطط بنية شبكة مؤسسية ثلاثي الأبعاد.png',
     imageAlt: 'Enterprise Network Redesign topology diagram',
     role: 'Network design & implementation',
     overview:
@@ -190,7 +190,7 @@ route-map ISP-A-PREF permit 10
       'Developed and deployed secure VPN solutions based on IPSec to connect multiple branches with high security and Zero Trust Architecture implementation.',
     tags: ['Juniper', 'IPSec', 'Security'],
     image:
-      'https://api.builder.io/api/v1/image/assets/TEMP/0e8f043ac072ad798990013aac8b7fd27d2f21e5?width=785',
+      '/public/شبكة آمنة في مركز البيانات.png',
     imageAlt: 'Juniper network hardware used for the VPN implementation',
     role: 'Security design & deployment',
     overview:
@@ -274,7 +274,7 @@ set security ipsec vpn BRANCH-A-VPN ike ipsec-policy IPSEC-POL`,
       'Designed a hybrid environment connecting on-premise data centers to AWS cloud using Transit Gateway with configuration automation via Python.',
     tags: ['AWS', 'Python', 'Terraform'],
     image:
-      'https://api.builder.io/api/v1/image/assets/TEMP/08ad4aa114961bf83c554397ae9eff779d0e80ea?width=785',
+      '/public/Hybrid Cloud Architecture.jpg',
     imageAlt: 'Cloud hybrid infrastructure visualization',
     role: 'Cloud network design & automation',
     overview:

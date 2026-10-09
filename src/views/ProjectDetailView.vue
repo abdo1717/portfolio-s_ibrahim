@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref ,onMounted} from 'vue'
 import { useRoute } from 'vue-router'
 import AppIcon from '@/components/ui/AppIcon.vue'
 import StatusBadge from '@/components/ui/StatusBadge.vue'
@@ -12,6 +12,25 @@ import { getNeighbours, getProject } from '@/data/portfolio'
 const route = useRoute()
 const project = computed(() => getProject(String(route.params.slug)))
 const neighbours = computed(() => getNeighbours(String(route.params.slug)))
+
+const isImageExpanded = ref(false)
+
+function openImageLightbox() {
+  isImageExpanded.value = true
+  document.body.style.overflow = 'hidden' // منع السكرول
+}
+
+function closeImageLightbox() {
+  isImageExpanded.value = false
+  document.body.style.overflow = ''
+}
+
+// إغلاق بـ Escape
+onMounted(() => {
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isImageExpanded.value) closeImageLightbox()
+  })
+})
 
 const h2 = 'font-heading text-2xl font-bold tracking-[-0.01em] text-navy sm:text-3xl'
 </script>
@@ -57,19 +76,62 @@ const h2 = 'font-heading text-2xl font-bold tracking-[-0.01em] text-navy sm:text
     </header>
 
     <!-- ───────── Cover image ───────── -->
-    <div class="px-4 sm:px-10 lg:px-16">
-      <div
-        v-reveal="{ delay: 200, variant: 'scale' }"
-        class="mx-auto max-w-7xl overflow-hidden rounded border border-border-light bg-primaryBlue-50 shadow-[0_4px_12px_rgba(0,61,155,0.05)]"
+<div class="px-4 sm:px-10 lg:px-16">
+  <div
+    v-reveal="{ delay: 200, variant: 'scale' }"
+    class="mx-auto max-w-7xl overflow-hidden rounded border border-border-light  shadow-[0_4px_12px_rgba(0,61,155,0.05)] cursor-zoom-in group"
+    @click="openImageLightbox"
+  >
+    <img
+      :src="project.image"
+      :alt="project.imageAlt"
+      class="w-full h-auto max-h-[500px] sm:max-h-[600px] object-contain transition-transform duration-500 group-hover:scale-[1.01]"
+      decoding="async"
+    />
+    
+    <!-- أيقونة التكبير -->
+    <div class="absolute top-4 right-4 flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1.5 text-xs font-mono text-steel shadow-sm">
+      <AppIcon name="zoom-in" :size="14" />
+      <span class="hidden sm:inline">Click to enlarge</span>
+    </div>
+  </div>
+</div>
+
+<!-- ───────── Lightbox Modal ───────── -->
+<Teleport to="body">
+  <Transition name="lightbox">
+    <div
+      v-if="isImageExpanded"
+      class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 cursor-zoom-out"
+      @click="closeImageLightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Enlarged project image"
+    >
+      <!-- زر الإغلاق -->
+      <button
+        class="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition"
+        @click.stop="closeImageLightbox"
+        aria-label="Close image"
       >
-        <img
-          :src="project.image"
-          :alt="project.imageAlt"
-          class="h-56 w-full object-cover sm:h-80 lg:h-[420px]"
-          decoding="async"
-        />
+        <AppIcon name="close" :size="20" />
+      </button>
+      
+      <!-- الصورة المكبرة -->
+      <img
+        :src="project.image"
+        :alt="project.imageAlt"
+        class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+        @click.stop
+      />
+      
+      <!-- Caption -->
+      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-2 text-sm text-white font-mono">
+        {{ project.imageAlt }}
       </div>
     </div>
+  </Transition>
+</Teleport>
 
     <!-- ───────── Body ───────── -->
     <div class="px-4 py-14 sm:px-10 sm:py-20 lg:px-16">
@@ -272,3 +334,24 @@ const h2 = 'font-heading text-2xl font-bold tracking-[-0.01em] text-navy sm:text
     <CtaBanner />
   </article>
 </template>
+
+<style scoped>
+.lightbox-enter-active,
+.lightbox-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.lightbox-enter-from,
+.lightbox-leave-to {
+  opacity: 0;
+}
+
+.lightbox-enter-active img {
+  transition: transform 0.3s ease;
+  transform: scale(0.95);
+}
+
+.lightbox-enter-to img {
+  transform: scale(1);
+}
+</style>
